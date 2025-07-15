@@ -9,11 +9,55 @@
 </head>
 <body>
 
-    <h1>Etch-a-Sketch</h1>
+    <h1>ETCH-A-SKETCH</h1>
+    <p>Let's Draw!</p>
 
+    <div id="gridSize">
+        <p>Select your grid size:</p>
+        <input type="text" id="input" placeholder="1-64">
+        <button id="submitBtn">Submit</button>
+    </div>
+    <p id="prompt"></p>
+
+
+    <div id="colorButtons">
+        <input type="radio" id="darkblue" name="marker" value="darkblue-marker">
+        <label for="darkblue-marker">Dark Blue</label>
+
+        <input type="radio" id="lightblue" name="marker" value="lightblue-marker">
+        <label for="lightblue-marker">Light Blue</label>
+        
+        <input type="radio" id="red" name="marker" value="red-marker">
+        <label for="red-marker">Red</label>
+
+        <input type="radio" id="orange" name="marker" value="orange-marker">
+        <label for="orange-marker">Orange</label>
+
+        <input type="radio" id="yellow" name="marker" value="yellow-marker">
+        <label for="yellow-marker">Yellow</label>
+
+        <input type="radio" id="green" name="marker" value="green-marker">
+        <label for="green-marker">Green</label>
+
+        <input type="radio" id="purple" name="marker" value="purple-marker">
+        <label for="purple-marker">Purple</label>
+
+        <input type="radio" id="pink" name="marker" value="pink-marker">
+        <label for="pink-marker">Pink</label>
+
+        <input type="radio" id="eraser" name="marker" value="eraser">
+        <label for="eraser">Eraser</label>
+
+        <button id="clearBtn">Clear</button>
+    </div>
+ 
+
+    <div id="canvas">
+
+    </div>
 
 
     <script src="script.js"></script>
-    
+
 </body>
 </html>
