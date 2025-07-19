@@ -8,6 +8,7 @@ const gridText = document.getElementById("gridText");
 
 // on page load make sure the default grid is 10 x 10
 
+makeGrid();
 
 //On input focus, prompt user to choose a grid size
 input.addEventListener('focus', () =>{
@@ -15,17 +16,17 @@ input.addEventListener('focus', () =>{
 });
 
 //On press of 'enter' key, create grid or inform user their input is invalid
-// input.addEventListener('keydown', function (e){
-//     const inputValue = input.value;
-//     if(e.key === "Enter"){
-//         if(inputValue >= 2 && inputValue <= 64){
-//         makeGrid();
-//         promptText.textContent = `Generating a ${inputValue} x ${inputValue} grid...`
-//     } else{
-//         promptText.textContent = "Invalid number. Please enter a number between 2 and 64."
-//     }
-//     }
-// });
+input.addEventListener('keydown', function (e){
+    const inputValue = input.value;
+    if(e.key === "Enter"){
+        if(inputValue >= 2 && inputValue <= 64){
+        makeGrid();
+        promptText.textContent = `Generating a ${inputValue} x ${inputValue} grid...`
+    } else{
+        promptText.textContent = "Invalid number. Please enter a number between 2 and 64."
+    }
+    }
+});
 
 // On click of submit button, create grid or inform user their input is invalid
 submitBtn.addEventListener('click', () =>{
@@ -49,26 +50,26 @@ function makeGrid(){
     }
     if(number == 0 || number > 64 || number == ""){
         for(let i = 0; i < 10; i++){
-            const rows = document.createElement("div");
-            rows.classList.add("rows");
-            canvas.appendChild(rows);
+            const row = document.createElement("div");
+            row.classList.add("rows");
+            canvas.appendChild(row);
         
             for(let j = 0; j < 10; j++){
-                const columns = document.createElement("div");
-                columns.classList.add("columns");
-                rows.appendChild(columns);
+                const column = document.createElement("div");
+                column.classList.add("columns");
+                row.appendChild(column);
             }
         } 
     } else {
         for(let i = 0; i < number; i++){
-            const rows = document.createElement("div");
-            rows.classList.add("rows");
-            canvas.appendChild(rows);
+            const row = document.createElement("div");
+            row.classList.add("rows");
+            canvas.appendChild(row);
         
             for(let j = 0; j < number; j++){
-                const columns = document.createElement("div");
-                columns.classList.add("columns");
-                rows.appendChild(columns);
+                const column = document.createElement("div");
+                column.classList.add("columns");
+                row.appendChild(column);
             }
         }
 }
