@@ -43,12 +43,16 @@ h1{
     /* give a max-width instead of width */
 }
 
-.squares{
-    flex: 1 0 auto;
+.rows{
+    display: flex;
+    flex: 1;
     background-color: rgb(192, 192, 192);
-    border: 1px white solid;
 }
 
+.columns{
+    flex: 1;
+    border: 1px white solid;
+}
 
 #gridSize p{
     text-align: center;
@@ -80,18 +84,6 @@ label{
 }
 
 
-
-/* .rows{
-    flex: 1;
-    background-color: rgb(26, 119, 107);
-    border: 1px black solid;
-} */
-
-/* .cols{
-    background-color: brown;
-    border: 1px black solid;
-    flex: 1;
-} */
 #colorButtons input{
     margin: 0px 0px 0px 13px;
     padding: 0;
