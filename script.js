@@ -3,44 +3,39 @@ const submitBtn = document.getElementById("submitBtn");
 const clearBtn = document.getElementById("clearBtn")
 const promptText = document.getElementById("promptText");
 const canvas = document.getElementById("canvas");
-// const gridText = document.getElementById("gridText");
 
 
-// on page load make sure the default grid is 10 x 10
-makeGrid();
+//clear grid on click of clear button
+clearBtn.addEventListener('click', clearGrid)
+
+
 
 //On input focus, prompt user to choose a grid size
 input.addEventListener('focus', () => {
     promptText.textContent = "Please enter a number between 2 and 64."
 });
 
+
+
 //On press of 'enter' key, create grid or inform user their input is invalid
-// input.addEventListener('keydown', function (e){
-//     const inputValue = input.value;
-//     if(e.key === "Enter"){
-//         makeGrid();
-//         if(inputValue >= 2 && inputValue <= 64){
-//             promptText.textContent = `Generating a ${inputValue} x ${inputValue} grid...`
-//         } 
-//         else{
-//             promptText.textContent = "Invalid number. Please enter a number between 2 and 64."
-//         }
-//     }
-// });
+input.addEventListener('keydown', function (e){
+    if(e.key === "Enter"){
+        makeGrid();
+    }
+});
+
+
 
 // On click of submit button, create grid or inform user their input is invalid
 submitBtn.addEventListener('click', makeGrid);
 
-// submitBtn.addEventListener('click', () =>{
-//     const inputValue = input.value;
-//     makeGrid();
-//     if(inputValue >= 2 && inputValue <= 64){
-//         promptText.textContent = `Generating a ${inputValue} x ${inputValue} grid...`
-//     } else{
-//         promptText.textContent = "Invalid number. Please enter a number between 2 and 64."
-//     }
-// });
 
+
+// on page load create default grid 10 x 10
+makeGrid();
+
+// on page load allow squares to be used
+draw();
 
 
 
@@ -84,14 +79,17 @@ function makeGrid(){
 }
 
 
+//call draw function again after user customization of grid
+draw();
 
 
-clearBtn.addEventListener('click', () =>{
+
+
+
+function clearGrid(){
     input.value = "";
     makeGrid();
-})
-
-
+}
 
 
 
@@ -100,12 +98,49 @@ clearBtn.addEventListener('click', () =>{
 
 
 function draw(){
-// add event listeners to every square for mousedown and mouseover events
-// do so by adding an event listener to every square targetting their class
+    let columns = document.getElementsByClassName("column");
+    for(i = 0; i < columns.length; i++){
+        columns.addEventListener("mouseover", changeColors);
+    }
 }
 
 
+function changeColors(){
+    const darkBlueMarker = document.getElementById("darkblue");
+    const lightBlueMarker = document.getElementById("lightblue");
+    const redMarker = document.getElementById("red");
+    const orangeMarker = document.getElementById("orange");
+    const yellowMarker = document.getElementById("yellow");
+    const greenMarker = document.getElementById("green");
+    const purpleMarker = document.getElementById("purple");
+    const pinkMarker = document.getElementById("pink");
+    const rainbowMarker = document.getElementById("rainbow");
+    const eraser = document.getElementById("eraser");
 
+
+    if (darkBlueMarker.checked){
+        column.style.backgroundColor = "rgb(0, 0, 140)";
+    } else if (lightBlueMarker.checked){
+        column.style.backgroundColor = "rgb(120, 200, 225)";
+    } else if (redMarker.checked){
+        column.style.backgroundColor = "rgb(255, 0, 0)";
+    } else if (orangeMarker.checked){
+        column.style.backgroundColor = "rgb(255, 165, 0)";       
+    } else if (yellowMarker.checked){
+        column.style.backgroundColor = "rgb(255, 255, 0)";      
+    } else if (greenMarker.checked){
+        column.style.backgroundColor = "rgb(0, 130, 0)";     
+    } else if (purpleMarker.checked){
+        column.style.backgroundColor = "rgb(130, 0, 130)";      
+    } else if (pinkMarker.checked){
+        column.style.backgroundColor = "rgb(255, 190, 200)";     
+    } else if (rainbowMarker.checked){
+        let randomColor = Math.floor(Math.random() * 16777216);
+        column.style.backgroundColor = `#${randomColor}`;     
+    } else if (eraser.checked){
+        column.style.backgroundColor = "";     
+    }
+}
 
 
 
