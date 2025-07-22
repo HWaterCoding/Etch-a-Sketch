@@ -9,12 +9,10 @@ const canvas = document.getElementById("canvas");
 clearBtn.addEventListener('click', clearGrid)
 
 
-
 //On input focus, prompt user to choose a grid size
 input.addEventListener('focus', () => {
     promptText.textContent = "Please enter a number between 2 and 64."
 });
-
 
 
 //On press of 'enter' key, create grid or inform user their input is invalid
@@ -25,10 +23,8 @@ input.addEventListener('keydown', function (e){
 });
 
 
-
 // On click of submit button, create grid or inform user their input is invalid
 submitBtn.addEventListener('click', makeGrid);
-
 
 
 // on page load create default grid 10 x 10
@@ -75,6 +71,7 @@ function makeGrid(){
                 row.appendChild(column);
             }
         }
+        draw();
 }
 }
 
@@ -86,26 +83,14 @@ draw();
 
 
 
-function clearGrid(){
-    input.value = "";
-    makeGrid();
-}
-
-
-
-
-
-
-
 function draw(){
-    let columns = document.getElementsByClassName("column");
-    for(i = 0; i < columns.length; i++){
-        columns.addEventListener("mouseover", changeColors);
+    let columns = document.getElementsByClassName("columns");
+    for(let i = 0; i < columns.length; i++){
+        columns[i].addEventListener("mousedown", changeColors);
     }
-}
 
-
-function changeColors(){
+    function changeColors(){
+    const blackMarker = document.getElementById("black");
     const darkBlueMarker = document.getElementById("darkblue");
     const lightBlueMarker = document.getElementById("lightblue");
     const redMarker = document.getElementById("red");
@@ -118,29 +103,40 @@ function changeColors(){
     const eraser = document.getElementById("eraser");
 
 
-    if (darkBlueMarker.checked){
-        column.style.backgroundColor = "rgb(0, 0, 140)";
+    if (blackMarker.checked){
+        this.style.backgroundColor = "rgb(0, 0, 0)";
+    } else if (darkBlueMarker.checked){
+        this.style.backgroundColor = "rgb(0, 0, 140)";
     } else if (lightBlueMarker.checked){
-        column.style.backgroundColor = "rgb(120, 200, 225)";
+        this.style.backgroundColor = "rgb(120, 200, 225)";
     } else if (redMarker.checked){
-        column.style.backgroundColor = "rgb(255, 0, 0)";
+        this.style.backgroundColor = "rgb(255, 0, 0)";
     } else if (orangeMarker.checked){
-        column.style.backgroundColor = "rgb(255, 165, 0)";       
+        this.style.backgroundColor = "rgb(255, 165, 0)";       
     } else if (yellowMarker.checked){
-        column.style.backgroundColor = "rgb(255, 255, 0)";      
+        this.style.backgroundColor = "rgb(255, 255, 0)";      
     } else if (greenMarker.checked){
-        column.style.backgroundColor = "rgb(0, 130, 0)";     
+        this.style.backgroundColor = "rgb(0, 130, 0)";     
     } else if (purpleMarker.checked){
-        column.style.backgroundColor = "rgb(130, 0, 130)";      
+        this.style.backgroundColor = "rgb(130, 0, 130)";      
     } else if (pinkMarker.checked){
-        column.style.backgroundColor = "rgb(255, 190, 200)";     
+        this.style.backgroundColor = "rgb(255, 190, 200)";     
     } else if (rainbowMarker.checked){
         let randomColor = Math.floor(Math.random() * 16777216);
-        column.style.backgroundColor = `#${randomColor}`;     
+        this.style.backgroundColor = `#${randomColor}`;     
     } else if (eraser.checked){
-        column.style.backgroundColor = "";     
+        this.style.backgroundColor = "";     
     }
 }
+}
+
+// clear the grid and reset to a 10x10 default grid
+function clearGrid(){
+    input.value = "";
+    makeGrid();
+    draw();
+}
+
 
 
 
