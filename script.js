@@ -80,13 +80,27 @@ function makeGrid(){
 draw();
 
 
+let isMouseDown = false;
 
+document.addEventListener("mousedown", () => {
+    isMouseDown = true
+});
+document.addEventListener("mouseup", () => {
+    isMouseDown = false
+});
+
+   
 
 
 function draw(){
     let columns = document.getElementsByClassName("columns");
     for(let i = 0; i < columns.length; i++){
         columns[i].addEventListener("mousedown", changeColors);
+        columns[i].addEventListener("mouseover", function () {
+            if(isMouseDown){
+                changeColors.call(this);
+            }
+        })
     }
 
     function changeColors(){
@@ -122,8 +136,12 @@ function draw(){
     } else if (pinkMarker.checked){
         this.style.backgroundColor = "rgb(255, 190, 200)";     
     } else if (rainbowMarker.checked){
-        let randomColor = Math.floor(Math.random() * 16777216);
-        this.style.backgroundColor = `#${randomColor}`;     
+        // let randomColor = Math.floor(Math.random() * 16777216).toString(16);
+        // this.style.backgroundColor = `#${randomColor}`;
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;     
     } else if (eraser.checked){
         this.style.backgroundColor = "";     
     }
