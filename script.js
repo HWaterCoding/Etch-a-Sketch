@@ -79,7 +79,7 @@ function makeGrid(){
 //call draw function again after user customization of grid
 draw();
 
-
+//isMouseDown variable to determine whether the mouse is being held down
 let isMouseDown = false;
 
 document.addEventListener("mousedown", () => {
@@ -91,7 +91,8 @@ document.addEventListener("mouseup", () => {
 
    
 
-
+//draw function to be called on page load and after makeGrid function
+//allows user to click and drag across grid to change colors of tiles
 function draw(){
     let columns = document.getElementsByClassName("columns");
     for(let i = 0; i < columns.length; i++){
